@@ -15,6 +15,16 @@ endcount = 0
 
 #関数resaltを定義
 while endcount == 0:
+    def error():
+        errorwindow = tk.Tk()
+        errorwindow.title('error')
+        errorwindow.geometry(f"{200}x{200}")
+        errorlab = tk.Label(errorwindow,text='存在しません')
+        errorlab.pack()
+        retrybtn = tk.Button(errorwindow,text='戻る',command=errorwindow.destroy)
+        retrybtn.pack()
+        errorwindow.mainloop()
+
     def end():
          global endcount
          endcount = endcount+1
@@ -35,33 +45,36 @@ while endcount == 0:
                 global i
                 #find関数の返り値が0より大きいとき
                 if findcount >= 0:
+                    global resaltcount
                     findcount = -1
                     listresalt.append(row)
+                    resaltcount = 1
                     continue
                 #読み込んでいるレコードとレコード数が一致するとき
                 if i == len(lines):
-                        errorwindow = tk.Tk()
-                        errorwindow.title('error')
-                        errorwindow.geometry(f"{200}x{200}")
-                        errorlab = tk.Label(errorwindow,text='存在しません')
-                        errorlab.pack()
-                        retrybtn = tk.Button(errorwindow,text='戻る',command=errorwindow.destroy)
-                        retrybtn.pack()
-                        errorwindow.mainloop()
-                        break
+                    error()
+                    break
+
                 #find関数の返り値がdefaultのとき(-1)
                 else:
                     i = i + 1
                     continue
         #結果を表示するウィンドウを生成
-        resaltwindow = tk.Tk()
-        resaltwindow.title('結果')
-        resaltlab = tk.Label(resaltwindow,text=listresalt)
-        resaltlab.pack()
-        resaltwindow.geometry(f"{200}x{200}")
-        resaltwindow.mainloop()
+        if resaltcount == 1:
+            resaltcount = 0
+            resaltwindow = tk.Tk()
+            resaltwindow.title('結果')
+            resaltlab = tk.Label(resaltwindow,text=listresalt)
+            resaltlab.pack()
+            resaltwindow.geometry(f"{200}x{200}")
+            resaltwindow.mainloop()
 
     #スタートのウィンドウ生成
+    i = 1
+    listresalt = []
+    endcount = 0
+    resaltcount = 0
+
     searchwindow = tk.Tk()
     searchwindow.title('検索')
     searchwindow.geometry(f"{200}x{200}")
