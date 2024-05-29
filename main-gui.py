@@ -8,6 +8,7 @@ file_path = 'sample.csv'  # CSVファイルのパスを指定
 with open(file_path, encoding='utf_8') as f:
     reader = csv.reader(f)
     lines = f.readlines()
+endcount = 0
 
 #関数resaltを定義
 while endcount == 0:
