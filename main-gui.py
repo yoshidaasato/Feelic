@@ -1,17 +1,13 @@
 #cording:utf_8
 import csv
 import tkinter as tk
-# CSVファイルを開く
 
-file_path = 'sample.csv'  # CSVファイルのパスを指定してください
+file_path = 'sample.csv'  # CSVファイルのパスを指定
+
 #csvの読み込みとレコード数の読み取り
 with open(file_path, encoding='utf_8') as f:
     reader = csv.reader(f)
     lines = f.readlines()
-
-i = 1
-listresalt = []
-endcount = 0
 
 #関数resaltを定義
 while endcount == 0:
