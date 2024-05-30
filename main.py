@@ -41,7 +41,14 @@ while endcount == 0:
     break
 #結果があるときだけ表示
 if resaltcount == 1:
+    output = str(resalt)
+    output = output.replace('{','')
+    output = output.replace('}','')
+    output = output.replace("'","")
+    output = output.replace('[','')
+    output = output.replace(']','\n')
+    output = output.replace(',',' ')
     print('検索結果')
-    print(resalt)
+    print(output)
 else:
     print('存在しません')
