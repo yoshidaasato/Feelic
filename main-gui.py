@@ -2,7 +2,9 @@
 import csv
 import tkinter as tk
 
-file_path = 'sample.csv'  # CSVファイルのパスを指定
+file_path = 'libdata.csv'  # CSVファイルのパスを指定
+width = 500
+height = 500
 
 #csvの読み込みとレコード数の読み取り
 with open(file_path, encoding='utf_8') as f:
@@ -59,11 +61,16 @@ while endcount == 0:
         #結果を表示するウィンドウを生成
         if resaltcount == 1:
             resaltcount = 0
+            output = str(listresalt)
+            output = output.replace('{','')
+            output = output.replace('}','')
+            output = output.replace("'","")
+            output = output.replace(',',' ')
             resaltwindow = tk.Tk()
             resaltwindow.title('結果')
-            resaltlab = tk.Label(resaltwindow,text=listresalt)
+            resaltlab = tk.Label(resaltwindow,text=output)
             resaltlab.pack()
-            resaltwindow.geometry(f"{200}x{200}")
+            resaltwindow.geometry(f"{width}x{height}")
             resaltwindow.mainloop()
 
     #スタートのウィンドウ生成

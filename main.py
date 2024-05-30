@@ -1,7 +1,7 @@
 #cording:utf_8
 import csv
 
-file_path = 'sample.csv'  # CSVファイルのパスを指定してください
+file_path = 'libdata.csv'  # CSVファイルのパスを指定してください
 
 searchword = input('入力')
 i = 1
