@@ -39,7 +39,7 @@ while endcount == 0:
             #各レコードの呼び出し
             for row in reader:
                 #リストから検索(部分一致)
-                index = ','.join(row)
+                index = ' '.join(row)
                 findcount = index.find(searchword)
                 global i
                 #find関数の返り値が0より大きいとき
@@ -65,6 +65,8 @@ while endcount == 0:
             output = output.replace('{','')
             output = output.replace('}','')
             output = output.replace("'","")
+            output = output.replace('[','')
+            output = output.replace(']','\n')
             output = output.replace(',',' ')
             resaltwindow = tk.Tk()
             resaltwindow.title('結果')
