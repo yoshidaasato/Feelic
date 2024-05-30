@@ -3,8 +3,8 @@ import csv
 import tkinter as tk
 
 file_path = 'libdata.csv'  # CSVファイルのパスを指定
-width = 500
-height = 500
+width = 500 #横解像度の選択
+height = 500 #縦解像度の選択
 
 #csvの読み込みとレコード数の読み取り
 with open(file_path, encoding='utf_8') as f:
@@ -40,6 +40,7 @@ while endcount == 0:
             for row in reader:
                 #リストから検索(部分一致)
                 index = ' '.join(row)
+                index = index.lower()
                 findcount = index.find(searchword)
                 global i
                 #find関数の返り値が0より大きいとき
@@ -61,6 +62,7 @@ while endcount == 0:
         #結果を表示するウィンドウを生成
         if resaltcount == 1:
             resaltcount = 0
+            #無駄な文字列を削除
             output = str(listresalt)
             output = output.replace('{','')
             output = output.replace('}','')
@@ -68,6 +70,7 @@ while endcount == 0:
             output = output.replace('[','')
             output = output.replace(']','\n')
             output = output.replace(',',' ')
+            #ウィンドウ生成
             resaltwindow = tk.Tk()
             resaltwindow.title('結果')
             resaltlab = tk.Label(resaltwindow,text=output)
@@ -84,7 +87,7 @@ while endcount == 0:
     searchwindow = tk.Tk()
     searchwindow.title('検索')
     searchwindow.geometry(f"{200}x{200}")
-    wordlab = tk.Label(searchwindow,text='検索ワード入力')
+    wordlab = tk.Label(searchwindow,text='検索ワード入力(英数は半角小文字)')
     wordlab.pack()
 
     wordent = tk.Entry(searchwindow,width=50)
