@@ -13,3 +13,4 @@ please setting your csv file on utf-8 cording.
 fix after error action.
 5/30 -system update!-
 improvement resalt window UI, add libdata.csv, add case-insensitive letter, add change window size.
+6/3 csv update csv
