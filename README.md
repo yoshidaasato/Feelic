@@ -7,7 +7,8 @@ If you use GUI, you must install tkinter.
 please setting your csv file on utf-8 cording.
 
 --history--
- 5/28 -first upload-
+
+5/28 -first upload-
 
 5/29 -fix update!-
 fix after error action.
