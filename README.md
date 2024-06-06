@@ -7,15 +7,12 @@ If you use GUI, you must install tkinter.
 please setting your csv file on utf-8 cording.
 
 --history--
-
-5/28 first upload
+5/28 -first upload-
 
 5/29 -fix update!-
-
 fix after error action.
 
 5/30 -system update!-
-
 improvement resalt window UI, add libdata.csv, add case-insensitive letter, add change window size.
 
-6/3 csv update csv
+6/3 -csv update-
