@@ -19,3 +19,4 @@ improvement resalt window UI, add libdata.csv, add case-insensitive letter, add 
 6/3 -csv update-
 
 6/11 -csv update-
+system development complited!!

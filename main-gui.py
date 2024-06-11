@@ -26,7 +26,7 @@ while endcount == 0:
 
     def end():
          global endcount
-         endcount = endcount+1
+         endcount = endcount+1 
          searchwindow.destroy()
     def resalt():
         #変数wordentから値を取得
