@@ -3,8 +3,8 @@ import csv
 import tkinter as tk
 
 file_path = 'libdata.csv'  # CSVファイルのパスを指定
-width = 500 #横解像度の選択
-height = 500 #縦解像度の選択
+width = 800 #横解像度の選択
+height = 800 #縦解像度の選択
 
 #csvの読み込みとレコード数の読み取り
 with open(file_path, encoding='utf_8') as f:
