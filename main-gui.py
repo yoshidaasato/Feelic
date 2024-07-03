@@ -32,32 +32,35 @@ while endcount == 0:
             global wordent
             searchword = wordent.get()
             searchwindow.destroy()
-            #csvの読み込み
-            with open(file_path,encoding='utf_8') as file:
-                reader = csv.reader(file)
-                #各レコードの呼び出し
-                for row in reader:
-                    #リストから検索(部分一致)
-                    index = ' '.join(row)
-                    index = index.lower()
-                    findcount = index.find(searchword)
-                    global i
-                    #find関数の返り値が0より大きいとき
-                    if findcount >= 0:
-                        global resaltcount
-                        findcount = -1
-                        listresalt.append(row)
-                        resaltcount = 1
-                        continue
-                    #読み込んでいるレコードとレコード数が一致するとき
-                    if i == len(lines):
-                        error()
-                        break
+            if searchword == '':
+                error()
+            else:
+                #csvの読み込み
+                with open(file_path,encoding='utf_8') as file:
+                    reader = csv.reader(file)
+                    #各レコードの呼び出し
+                    for row in reader:
+                        #リストから検索(部分一致)
+                        index = ' '.join(row)
+                        index = index.lower()
+                        findcount = index.find(searchword)
+                        global i
+                        #find関数の返り値が0より大きいとき
+                        if findcount >= 0:
+                            global resaltcount
+                            findcount = -1
+                            listresalt.append(row)
+                            resaltcount = 1
+                            continue
+                        #読み込んでいるレコードとレコード数が一致するとき
+                        if i == len(lines):
+                            error()
+                            break
 
-                    #find関数の返り値がdefaultのとき(-1)
-                    else:
-                        i = i + 1
-                        continue
+                        #find関数の返り値がdefaultのとき(-1)
+                        else:
+                            i = i + 1
+                            continue
             #結果を表示するウィンドウを生成
             if resaltcount == 1:
                 resaltcount = 0
