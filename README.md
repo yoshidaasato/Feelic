@@ -1,4 +1,4 @@
-# HCU-libsys
+# Feelic HCU-wind-library-system
 
 This system need python and csv.
 If you use system on non-GUI, please runnning main.py.
