@@ -41,7 +41,7 @@ while endcount == 0:
                     #各レコードの呼び出し
                     for row in reader:
                         #リストから検索(部分一致)
-                        index = ' '.join(row)
+                        index = ''.join(row)
                         index = index.lower()
                         findcount = index.find(searchword)
                         global i
@@ -71,7 +71,6 @@ while endcount == 0:
                 output = output.replace("'","")
                 output = output.replace('[','')
                 output = output.replace(']','\n')
-                output = output.replace(',',' ')
                 #ウィンドウ生成
                 resaltwindow = tk.Tk()
                 resaltwindow.title('結果')
@@ -172,7 +171,7 @@ while endcount == 0:
     
     #メインウィンドウ生成
     mainwindow = tk.Tk()
-    mainwindow.title('HCU-LibSys')
+    mainwindow.title('Feelic')
     mainwindow.geometry(f"{300}x{300}")
     sear_btn = tk.Button(mainwindow,text='検索',command=startsearch)
     sear_btn.pack()
