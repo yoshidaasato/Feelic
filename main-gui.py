@@ -123,7 +123,7 @@ while endcount == 0:
             successlab = tk.Label(compwindow,text='正常に処理を受け付けました')
             successlab.pack()
             endbtn = tk.Button(compwindow,text='戻る',command=compwindow.destroy)
-            endbtn.pack
+            endbtn.pack()
 
         #addwindowの生成
         addwindow = tk.Tk()
