@@ -27,73 +27,112 @@ while endcount == 0:
             retrybtn.pack()
             errorwindow.mainloop()
         #startsearch下で結果を出力するときに動作する関数
-        def resalt():
-            #変数wordentから値を取得
-            global wordent
-            searchword = wordent.get()
-            searchwindow.destroy()
-            if searchword == '':
-                error()
-            else:
-                #csvの読み込み
-                with open(file_path,encoding='utf_8') as file:
-                    reader = csv.reader(file)
-                    #各レコードの呼び出し
-                    for row in reader:
-                        #リストから検索(部分一致)
-                        index = ''.join(row)
-                        index = index.lower()
-                        findcount = index.find(searchword)
-                        global i
-                        #find関数の返り値が0より大きいとき
-                        if findcount >= 0:
-                            global resaltcount
-                            findcount = -1
-                            listresalt.append(row)
-                            resaltcount = 1
-                            continue
-                        #読み込んでいるレコードとレコード数が一致するとき
-                        if i == len(lines):
-                            error()
-                            break
 
-                        #find関数の返り値がdefaultのとき(-1)
-                        else:
-                            i = i + 1
-                            continue
-            #結果を表示するウィンドウを生成
-            if resaltcount == 1:
-                resaltcount = 0
-                #無駄な文字列を削除
-                output = str(listresalt)
-                output = output.replace('{','')
-                output = output.replace('}','')
-                output = output.replace("'","")
-                output = output.replace('[','')
-                output = output.replace(']','\n')
-                #ウィンドウ生成
-                resaltwindow = tk.Tk()
-                resaltwindow.title('結果')
-                resaltlab = tk.Label(resaltwindow,text=output)
-                resaltlab.pack()
-                resaltwindow.geometry(f"{width}x{height}")
-                resaltwindow.mainloop()
         #メインウィンドウの削除
         mainwindow.destroy()
         #検索ウィンドウの生成
-        searchwindow = tk.Tk()
-        searchwindow.title('検索')
-        searchwindow.geometry(f"{300}x{300}")
-        wordlab = tk.Label(searchwindow,text='検索ワード入力(英数は半角小文字)')
-        wordlab.pack()
-        global wordent
-        wordent = tk.Entry(searchwindow,width=50)
-        wordent.pack()
-        searchbtn = tk.Button(searchwindow,text='検索',command=resalt)
-        searchbtn.pack()
-        endbtn = tk.Button(searchwindow,text='戻る',command=searchwindow.destroy)
-        endbtn.pack()
-        searchwindow.mainloop()
+        def allwordsearch():  
+            searchmodewindow.destroy()      
+            def resalt1():
+                #変数wordentから値を取得
+                global wordent
+                searchword = wordent.get()
+                allwordwindow.destroy()
+                if searchword == '':
+                    error()
+                else:
+                    #csvの読み込み
+                    with open(file_path,encoding='utf_8') as file:
+                        reader = csv.reader(file)
+                        #各レコードの呼び出し
+                        for row in reader:
+                            #リストから検索(部分一致)
+                            index = ''.join(row)
+                            index = index.lower()
+                            findcount = index.find(searchword)
+                            global i
+                            #find関数の返り値が0より大きいとき
+                            if findcount >= 0:
+                                global resaltcount
+                                findcount = -1
+                                listresalt.append(row)
+                                resaltcount = 1
+                                continue
+                            #読み込んでいるレコードとレコード数が一致するとき
+                            if i == len(lines):
+                                error()
+                                break
+
+                            #find関数の返り値がdefaultのとき(-1)
+                            else:
+                                i = i + 1
+                                continue
+                #結果を表示するウィンドウを生成
+                if resaltcount == 1:
+                    resaltcount = 0
+                    #無駄な文字列を削除
+                    output = str(listresalt)
+                    output = output.replace('{','')
+                    output = output.replace('}','')
+                    output = output.replace("'","")
+                    output = output.replace('[','')
+                    output = output.replace(']','\n')
+                    #ウィンドウ生成
+                    resaltwindow = tk.Tk()
+                    resaltwindow.title('結果')
+                    resaltlab = tk.Label(resaltwindow,text=output)
+                    resaltlab.pack()
+                    resaltwindow.geometry(f"{width}x{height}")
+                    resaltwindow.mainloop()
+
+            allwordwindow = tk.Tk()
+            allwordwindow.title('検索')
+            allwordwindow.geometry(f"{300}x{300}")
+            wordlab = tk.Label(allwordwindow,text='検索ワード入力(英数は半角小文字)')
+            wordlab.pack()
+            global wordent
+            wordent = tk.Entry(allwordwindow,width=50)
+            wordent.pack()
+            searchbtn = tk.Button(allwordwindow,text='検索',command=resalt1)
+            searchbtn.pack()
+            endbtn = tk.Button(allwordwindow,text='戻る',command=allwordwindow.destroy)
+            endbtn.pack()
+            allwordwindow.mainloop()
+        
+        def instsearch():
+
+            def resalt2():
+                resaltwindow = tk.Tk()
+                resaltwindow.title('検索結果')
+                resaltwindow.mainloop()
+
+            instwindow = tk.Tk()
+            instwindow.title('楽器パート検索')
+            instent = tk.Entry(instwindow,width=50)
+            instent.pack()
+            searchbtn = tk.Button(instwindow,text='検索',command=resalt2)
+            searchbtn.pack()
+            endbtn = tk.Button(instwindow,text='戻る',command=instwindow.destroy)
+            endbtn.pack
+            instwindow.mainloop()
+
+        def idsearch():
+            idwindow = tk.Tk()
+            idwindow.title('id検索')
+            idwindow.mainloop()
+
+
+        searchmodewindow = tk.Tk()
+        searchmodewindow.title('検索設定')
+        allwordbtn = tk.Button(searchmodewindow,text='全文検索',command=allwordsearch)
+        allwordbtn.pack()
+        instbtn = tk.Button(searchmodewindow,text='楽器パート検索',command=instsearch)
+        instbtn.pack()
+        idsearchbtn = tk.Button(searchmodewindow,text='id検索',command=idsearch)
+        idsearchbtn.pack()
+        returnbtn = tk.Button(searchmodewindow,text='戻る',command=searchmodewindow.destroy)
+        returnbtn.pack()
+        searchmodewindow.mainloop()
     #追加関係の処理を行う関数を定義
     def startadd():
         #startadd下で追加の処理を行う時に動作する関数
