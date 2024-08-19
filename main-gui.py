@@ -400,7 +400,7 @@ while endcount == 0:
                 resaltlab = tk.Label(resaltwindow,text='検索結果',font=(20))
                 resaltlab.pack()
                 #csvの読み込み
-                with open('libdata.csv',encoding='utf8') as file:
+                with open(file_path,encoding='utf8') as file:
                     data = [x for x in csv.reader(file)]
                     #入力したidとデータにあるidを照合
                     for i in range(len(data)):
