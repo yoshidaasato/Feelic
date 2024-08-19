@@ -34,3 +34,6 @@ Enable add mode
 
 7/03 -main-gui.py exe packaging-
 Add main-gui.exe
+
+8/19 -Feelic ver.2.0 release-
+Feelic new release!
