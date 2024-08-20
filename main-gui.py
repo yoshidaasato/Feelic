@@ -3,7 +3,7 @@ import csv
 import tkinter as tk
 import pandas as pd
 
-file_path = 'libdata.csv'  # CSVファイルのパスを指定
+file_path = 'data/libdata.csv'  # CSVファイルのパスを指定
 width = 800 #横解像度の選択
 height = 800 #縦解像度の選択
 
@@ -19,9 +19,9 @@ while endcount == 0:
             errorwindow = tk.Tk()
             errorwindow.title('error')
             errorwindow.geometry(f"{300}x{300}")
-            errorlab = tk.Label(errorwindow,text='存在しません')
+            errorlab = tk.Label(errorwindow,text='存在しません',font=(10))
             errorlab.pack()
-            retrybtn = tk.Button(errorwindow,text='戻る',command=errorwindow.destroy)
+            retrybtn = tk.Button(errorwindow,text='戻る',command=errorwindow.destroy,font=(10))
             retrybtn.pack()
             errorwindow.mainloop()
         #startsearch下で結果を出力するときに動作する関数
@@ -74,6 +74,7 @@ while endcount == 0:
                     if len(resaltid) <= 20:
                         resaltwindow = tk.Tk()
                         resaltwindow.title('結果')
+                        resaltwindow.geometry(f"{width}x{height}")
                         resaltwindow.overrideredirect(True)
                         #結果を変数に格納
                         for i in range(len(resaltid)):
@@ -86,9 +87,8 @@ while endcount == 0:
                         idresaltlab.grid(row=0,column=0)
                         titleresaltlab = tk.Label(resaltwindow,text=titleoutput,font=(10))
                         titleresaltlab.grid(row=0,column=1)
-                        endbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy)
+                        endbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy,font=(10))
                         endbtn.grid(row=1,column=1)
-                        resaltwindow.geometry(f"{width}x{height}")
                         resaltwindow.mainloop()
                     #検索結果が21以上の時の処理
                     else:
@@ -117,6 +117,7 @@ while endcount == 0:
                             #検索結果のウィンドウを表示
                             resaltwindow = tk.Tk()
                             resaltwindow.title('結果')
+                            resaltwindow.geometry(f"{width}x{height}")
                             resaltwindow.overrideredirect(True)
                             idoutput = ''
                             titleoutput = ''
@@ -141,16 +142,23 @@ while endcount == 0:
                             if page > 1:
                                 returnbtn = tk.Button(resaltwindow,text='前のページ',command=pre,font=(15))
                                 returnbtn.grid(row=1,column=0)
-                            
-                            if  page <= len(resaltid)//20:
+                            if  page <= (len(resaltid)-1)//20:
                                 nextbtn = tk.Button(resaltwindow,text='次のページ',command=next,font=(15))
                                 nextbtn.grid(row=1,column=2)
                             #終了ボタン
                             endbtn = tk.Button(resaltwindow,text='終了',command=resaltend,font=(15))
                             endbtn.grid(row=2,column=1)
-
-                            resaltwindow.geometry(f"{width}x{height}")
                             resaltwindow.mainloop()    
+
+                else:
+                    resaltwindow = tk.Tk()
+                    resaltwindow.title('検索結果')
+                    resaltwindow.geometry(f"{300}x{300}")
+                    resaltlab = tk.Label(resaltwindow,text='存在しません',font=(10))
+                    resaltlab.pack()
+                    returnbtn = tk.Button(resaltwindow,text='終了',font=(10),command=resaltwindow.destroy)
+                    returnbtn.pack()
+                    resaltwindow.mainloop() 
               
                     
             #全文検索選択時のウィンドウ生成
@@ -238,6 +246,7 @@ while endcount == 0:
                     if len(resaltid) <= 20:
                         resaltwindow = tk.Tk()
                         resaltwindow.title('結果')
+                        resaltwindow.geometry(f"{width}x{height}")
                         resaltwindow.overrideredirect(True)
                         for i in range(len(resaltid)):
                             idoutput = idoutput + str(resaltid[i]) + '\n'
@@ -248,9 +257,8 @@ while endcount == 0:
                         idresaltlab.grid(row=0,column=0)
                         titleresaltlab = tk.Label(resaltwindow,text=titleoutput,font=(10))
                         titleresaltlab.grid(row=0,column=1)
-                        endbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy)
+                        endbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy,font=(10))
                         endbtn.grid(row=1,column=1)
-                        resaltwindow.geometry(f"{width}x{height}")
                         resaltwindow.mainloop()
                     #検索結果が21以上で複数ページに結果がわたる場合
                     else:
@@ -305,7 +313,7 @@ while endcount == 0:
                                 returnbtn = tk.Button(resaltwindow,text='前のページ',command=pre,font=(15))
                                 returnbtn.grid(row=1,column=0)
                             
-                            if  page <= len(resaltid)//20:
+                            if  page <= (len(resaltid)-1)//20:
                                 nextbtn = tk.Button(resaltwindow,text='次のページ',command=next,font=(15))
                                 nextbtn.grid(row=1,column=2)
                             #終了ボタン
@@ -319,9 +327,9 @@ while endcount == 0:
                     resaltwindow =tk.Tk()
                     resaltwindow.title('検索結果')
                     resaltwindow.geometry(f"{300}x{300}")
-                    nulllab = tk.Label(resaltwindow,text='存在しません')
+                    nulllab = tk.Label(resaltwindow,text='存在しません',font=(10))
                     nulllab.pack()
-                    returnbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy)
+                    returnbtn = tk.Button(resaltwindow,text='終了',command=resaltwindow.destroy,font=(10))
                     returnbtn.pack()
                     resaltwindow.mainloop()
             #楽器パート検索用のウィンドウを生成
@@ -397,6 +405,7 @@ while endcount == 0:
                 idwindow.destroy()
                 resaltwindow = tk.Tk()
                 resaltwindow.title('検索結果')
+                resaltwindow.geometry(f"{500}x{500}")
                 resaltlab = tk.Label(resaltwindow,text='検索結果',font=(20))
                 resaltlab.pack()
                 #csvの読み込み
@@ -406,7 +415,7 @@ while endcount == 0:
                     for i in range(len(data)):
                         index = str(data[i][0])                      
                         if index == searchid:
-                            idresaltlab = tk.Label(resaltwindow,text=str(data[i][0])+str(data[i][1]),font=(10))
+                            idresaltlab = tk.Label(resaltwindow,text=str(data[i][0])+' '+str(data[i][1]),font=(10))
                             idresaltlab.pack()
                             count = 1
                             break #合うidがあればloop処理を終了
@@ -419,7 +428,6 @@ while endcount == 0:
                 #その他のUI
                 returnbtn = tk.Button(resaltwindow,text='戻る',command=resaltwindow.destroy,font=(10))
                 returnbtn.pack()
-                resaltwindow.geometry(f"{500}x{500}")
                 resaltwindow.mainloop()
             #id検索用のウィンドウを生成
             idwindow = tk.Tk()
@@ -452,151 +460,164 @@ while endcount == 0:
     def startadd():
         #startadd下で追加の処理を行う時に動作する関数
         mainwindow.destroy()
-        def addpro():
-            #変数呼び出しとaddwindowからの値の取得
-            global addtitleent
-            title = addtitleent.get()
-            global addhiraganaent
-            hiragana = addhiraganaent.get()
-            global addgenreent
-            genre = addgenreent.get()
-            global addoptionent
-            option = addoptionent.get()
-            addwindow.destroy()
-            instlist = []
-            if selectfl.get() == 1:
-                instlist.append('fl')
-            if selectcl.get() == 1:
-                instlist.append('cl')
-            if selectob.get() == 1:
-                instlist.append('ob')
-            if selectasax.get() == 1:
-                instlist.append('asax')
-            if selecttsax.get() == 1:
-                instlist.append('tsax')
-            if selectbsax.get() == 1:
-                instlist.append('bsax')
-            if selecttp.get() == 1:
-                instlist.append('tp')
-            if selecthr.get() == 1:
-                instlist.append('hr')
-            if selecttrb.get() == 1:
-                instlist.append('trb')
-            if selecteup.get() == 1:
-                instlist.append('eup')
-            if selecttub.get() == 1:
-                instlist.append('tub')
-            if selectperc.get() == 1:
-                instlist.append('perc')
-            if selectdr.get() == 1:
-                instlist.append('dr')
-            if selectmar.get() == 1:
-                instlist.append('mar')
-            if selectglo.get() == 1:
-                instlist.append('glo')
-            instruments = ' '.join(instlist)
-            #csvファイルをappendで呼び出し
-            with open(file_path,'a',encoding='utf-8',newline='') as afile:
-                #csv書き込みのデータ準備
-                with open(file_path,'r',encoding='utf=8',newline='') as rfile:
-                    rdata = [x for x in csv.reader(rfile)]
-                number = str(int(rdata[len(rdata)-1][0]) + 1)
-                writer = csv.writer(afile)
-                data = [number,title,hiragana,genre,option,instruments]
-                #csv書き込み
-                writer.writerow(data)
-            #処理の正常終了を伝えるウィンドウの生成
-            compwindow = tk.Tk()
-            compwindow.geometry(f"{300}x{300}")
-            compwindow.title('出力')
-            successlab = tk.Label(compwindow,text='正常に処理を受け付けました')
-            successlab.pack()
-            endbtn = tk.Button(compwindow,text='戻る',command=compwindow.destroy)
-            endbtn.pack()
+        global addendcount
+        addendcount = 0
+        while endcount == 0:
+            def addpro():
+                #変数呼び出しとaddwindowからの値の取得
+                global addtitleent
+                title = addtitleent.get()
+                global addhiraganaent
+                hiragana = addhiraganaent.get()
+                global addgenreent
+                genre = addgenreent.get()
+                global addoptionent
+                option = addoptionent.get()
+                addwindow.destroy()
+                instlist = []
+                if selectfl.get() == 1:
+                    instlist.append('fl')
+                if selectcl.get() == 1:
+                    instlist.append('cl')
+                if selectob.get() == 1:
+                    instlist.append('ob')
+                if selectasax.get() == 1:
+                    instlist.append('asax')
+                if selecttsax.get() == 1:
+                    instlist.append('tsax')
+                if selectbsax.get() == 1:
+                    instlist.append('bsax')
+                if selecttp.get() == 1:
+                    instlist.append('tp')
+                if selecthr.get() == 1:
+                    instlist.append('hr')
+                if selecttrb.get() == 1:
+                    instlist.append('trb')
+                if selecteup.get() == 1:
+                    instlist.append('eup')
+                if selecttub.get() == 1:
+                    instlist.append('tub')
+                if selectperc.get() == 1:
+                    instlist.append('perc')
+                if selectdr.get() == 1:
+                    instlist.append('dr')
+                if selectmar.get() == 1:
+                    instlist.append('mar')
+                if selectglo.get() == 1:
+                    instlist.append('glo')
+                instruments = ' '.join(instlist)
+                #csvファイルをappendで呼び出し
+                with open(file_path,'a',encoding='utf-8',newline='') as afile:
+                    #csv書き込みのデータ準備
+                    with open(file_path,'r',encoding='utf=8',newline='') as rfile:
+                        rdata = [x for x in csv.reader(rfile)]
+                    number = str(int(rdata[len(rdata)-1][0]) + 1)
+                    writer = csv.writer(afile)
+                    data = [number,title,hiragana,genre,option,instruments]
+                    #csv書き込み
+                    writer.writerow(data)
+                #処理の正常終了を伝えるウィンドウの生成
+                compwindow = tk.Tk()
+                compwindow.geometry(f"{500}x{500}")
+                compwindow.title('出力')
+                successlab = tk.Label(compwindow,text='正常に処理を受け付けました',font=(10))
+                successlab.pack()
+                idlab = tk.Label(compwindow,text='登録ID：'+number,font=(10))
+                idlab.pack()
+                titlelab = tk.Label(compwindow,text='登録タイトル'+title,font=(10))
+                titlelab. pack()
+                endbtn = tk.Button(compwindow,text='戻る',command=compwindow.destroy,font=(10))
+                endbtn.pack()
+                compwindow.mainloop()
 
-        #addwindowの生成
-        addwindow = tk.Tk()
-        addwindow.geometry(f"{500}x{500}")
-        addwindow.title('追加')
-        #変数呼び出し
-        global addtitleent
-        global addhiraganaent
-        global addgenreent
-        global addoptionent
-        #ボタン類の設定
-        addlab = tk.Label(addwindow,text='追加設定',font=('',20))
-        addlab.grid(row=0,column=1,columnspan=3)
-        addtitlelab = tk.Label(addwindow,text='タイトル',font=(10))
-        addtitlelab.grid(row=1,column=1,columnspan=3)
-        addtitleent = tk.Entry(addwindow,font=(10))
-        addtitleent.grid(row=2,column=1,columnspan=3)
-        addhiraganalab =tk.Label(addwindow,text='ひらがな名',font=(10))
-        addhiraganalab.grid(row=3,column=1,columnspan=3)
-        addhiraganaent = tk.Entry(addwindow,font=(10))
-        addhiraganaent.grid(row=4,column=1,columnspan=3)
-        addgenrelab = tk.Label(addwindow,text='ジャンル入力',font=(10))
-        addgenrelab.grid(row=5,column=1,columnspan=3)
-        addgenreent = tk.Entry(addwindow,font=(10))
-        addgenreent.grid(row=6,column=1,columnspan=3)
-        addoptionlab = tk.Label(addwindow,text='オプション',font=(10))
-        addoptionlab.grid(row=7,column=1,columnspan=3)
-        addoptionent = tk.Entry(addwindow,font=(10))
-        addoptionent.grid(row=8,column=1,columnspan=3)
-        addinstlab = tk.Label(addwindow,text='楽器パート選択',font=(10))
-        addinstlab.grid(row=9,column=1,columnspan=3)  
-        #選択した楽器を取得する変数
-        selectfl = tk.IntVar()
-        selectcl = tk.IntVar()
-        selectob = tk.IntVar()
-        selectasax = tk.IntVar()
-        selecttsax = tk.IntVar()
-        selectbsax = tk.IntVar()
-        selecttp = tk.IntVar()
-        selecthr = tk.IntVar()
-        selecttrb = tk.IntVar()
-        selecteup = tk.IntVar()
-        selecttub = tk.IntVar()
-        selectperc = tk.IntVar()
-        selectdr = tk.IntVar()
-        selectmar = tk.IntVar()
-        selectglo = tk.IntVar()
-        #楽器の選択用チェックボックス
-        flcb = tk.Checkbutton(addwindow,text='フルート',variable=selectfl)
-        flcb.grid(row=10,column=0)
-        clcb = tk.Checkbutton(addwindow,text='クラリネット',variable=selectcl)
-        clcb.grid(row=10,column=1)
-        obcb = tk.Checkbutton(addwindow,text='オーボエ',variable=selectob)
-        obcb.grid(row=10,column=2)
-        asaxcb = tk.Checkbutton(addwindow,text='アルトサックス',variable=selectasax)
-        asaxcb.grid(row=10,column=3)
-        tsaxcb = tk.Checkbutton(addwindow,text='テナーサックス',variable=selecttsax)
-        tsaxcb.grid(row=10,column=4)
-        bsaxcb = tk.Checkbutton(addwindow,text='バリトンサックス',variable=selectbsax)
-        bsaxcb.grid(row=11,column=0)
-        tpcb = tk.Checkbutton(addwindow,text='トランペット',variable=selecttp)
-        tpcb.grid(row=11,column=1)
-        hrcb = tk.Checkbutton(addwindow,text='ホルン',variable=selecthr)
-        hrcb.grid(row=11,column=2)
-        trbcb = tk.Checkbutton(addwindow,text='トロンボーン',variable=selecttrb)
-        trbcb.grid(row=11,column=3)
-        eupcb = tk.Checkbutton(addwindow,text='ユーフォニアム',variable=selecteup)
-        eupcb.grid(row=11,column=4)
-        tubcb = tk.Checkbutton(addwindow,text='チューバ',variable=selecttub)
-        tubcb.grid(row=12,column=0)
-        perccb = tk.Checkbutton(addwindow,text='パーカッション',variable=selectperc)
-        perccb.grid(row=12,column=1)
-        drcb = tk.Checkbutton(addwindow,text='ドラム',variable=selectdr)
-        drcb.grid(row=12,column=2)
-        marcb = tk.Checkbutton(addwindow,text='マリンバ',variable=selectmar)
-        marcb.grid(row=12,column=3)
-        grocb = tk.Checkbutton(addwindow,text='グロッケン',variable=selectglo)
-        grocb.grid(row=12,column=4)
-        #その他のUI
-        addbtn = tk.Button(addwindow,text='追加',command=addpro,font=(10))
-        addbtn.grid(row=13,column=1,columnspan=3)
-        endbtn = tk.Button(addwindow,text='戻る',command=addwindow.destroy,font=(10))
-        endbtn.grid(row=14,column=1,columnspan=3)
-        addwindow.mainloop()
+            def addend():
+                addwindow.destroy()
+                global addendcount
+                addendcount = 1
+
+            #addwindowの生成
+            addwindow = tk.Tk()
+            addwindow.geometry(f"{500}x{500}")
+            addwindow.title('追加')
+            #変数呼び出し
+            global addtitleent
+            global addhiraganaent
+            global addgenreent
+            global addoptionent
+            #ボタン類の設定
+            addlab = tk.Label(addwindow,text='追加設定',font=('',20))
+            addlab.grid(row=0,column=1,columnspan=3)
+            addtitlelab = tk.Label(addwindow,text='タイトル',font=(10))
+            addtitlelab.grid(row=1,column=1,columnspan=3)
+            addtitleent = tk.Entry(addwindow,font=(10))
+            addtitleent.grid(row=2,column=1,columnspan=3)
+            addhiraganalab =tk.Label(addwindow,text='ひらがな名',font=(10))
+            addhiraganalab.grid(row=3,column=1,columnspan=3)
+            addhiraganaent = tk.Entry(addwindow,font=(10))
+            addhiraganaent.grid(row=4,column=1,columnspan=3)
+            addgenrelab = tk.Label(addwindow,text='ジャンル入力',font=(10))
+            addgenrelab.grid(row=5,column=1,columnspan=3)
+            addgenreent = tk.Entry(addwindow,font=(10))
+            addgenreent.grid(row=6,column=1,columnspan=3)
+            addoptionlab = tk.Label(addwindow,text='オプション',font=(10))
+            addoptionlab.grid(row=7,column=1,columnspan=3)
+            addoptionent = tk.Entry(addwindow,font=(10))
+            addoptionent.grid(row=8,column=1,columnspan=3)
+            addinstlab = tk.Label(addwindow,text='楽器パート選択',font=(10))
+            addinstlab.grid(row=9,column=1,columnspan=3)  
+            #選択した楽器を取得する変数
+            selectfl = tk.IntVar()
+            selectcl = tk.IntVar()
+            selectob = tk.IntVar()
+            selectasax = tk.IntVar()
+            selecttsax = tk.IntVar()
+            selectbsax = tk.IntVar()
+            selecttp = tk.IntVar()
+            selecthr = tk.IntVar()
+            selecttrb = tk.IntVar()
+            selecteup = tk.IntVar()
+            selecttub = tk.IntVar()
+            selectperc = tk.IntVar()
+            selectdr = tk.IntVar()
+            selectmar = tk.IntVar()
+            selectglo = tk.IntVar()
+            #楽器の選択用チェックボックス
+            flcb = tk.Checkbutton(addwindow,text='フルート',variable=selectfl)
+            flcb.grid(row=10,column=0)
+            clcb = tk.Checkbutton(addwindow,text='クラリネット',variable=selectcl)
+            clcb.grid(row=10,column=1)
+            obcb = tk.Checkbutton(addwindow,text='オーボエ',variable=selectob)
+            obcb.grid(row=10,column=2)
+            asaxcb = tk.Checkbutton(addwindow,text='アルトサックス',variable=selectasax)
+            asaxcb.grid(row=10,column=3)
+            tsaxcb = tk.Checkbutton(addwindow,text='テナーサックス',variable=selecttsax)
+            tsaxcb.grid(row=10,column=4)
+            bsaxcb = tk.Checkbutton(addwindow,text='バリトンサックス',variable=selectbsax)
+            bsaxcb.grid(row=11,column=0)
+            tpcb = tk.Checkbutton(addwindow,text='トランペット',variable=selecttp)
+            tpcb.grid(row=11,column=1)
+            hrcb = tk.Checkbutton(addwindow,text='ホルン',variable=selecthr)
+            hrcb.grid(row=11,column=2)
+            trbcb = tk.Checkbutton(addwindow,text='トロンボーン',variable=selecttrb)
+            trbcb.grid(row=11,column=3)
+            eupcb = tk.Checkbutton(addwindow,text='ユーフォニアム',variable=selecteup)
+            eupcb.grid(row=11,column=4)
+            tubcb = tk.Checkbutton(addwindow,text='チューバ',variable=selecttub)
+            tubcb.grid(row=12,column=0)
+            perccb = tk.Checkbutton(addwindow,text='パーカッション',variable=selectperc)
+            perccb.grid(row=12,column=1)
+            drcb = tk.Checkbutton(addwindow,text='ドラム',variable=selectdr)
+            drcb.grid(row=12,column=2)
+            marcb = tk.Checkbutton(addwindow,text='マリンバ',variable=selectmar)
+            marcb.grid(row=12,column=3)
+            grocb = tk.Checkbutton(addwindow,text='グロッケン',variable=selectglo)
+            grocb.grid(row=12,column=4)
+            #その他のUI
+            addbtn = tk.Button(addwindow,text='追加',command=addpro,font=(10))
+            addbtn.grid(row=13,column=1,columnspan=3)
+            endbtn = tk.Button(addwindow,text='戻る',command=addend,font=(10))
+            endbtn.grid(row=14,column=1,columnspan=3)
+            addwindow.mainloop()
     #削除処理の関数
     def remove():
         mainwindow.destroy()
@@ -671,9 +692,9 @@ while endcount == 0:
     
     #メインウィンドウ生成
     mainwindow = tk.Tk()
-    mainwindow.title('Feelic')
-    iconfile = 'feelic.ico'
+    iconfile = 'data/feelic.ico'
     mainwindow.iconbitmap(default=iconfile)
+    mainwindow.title('Feelic')
     mainwindow.geometry(f"{500}x{500}")
     mainlab = tk.Label(mainwindow,text='Feelic',font=('times',40,'italic'))
     mainlab.pack(side='top',pady=20)
@@ -685,6 +706,6 @@ while endcount == 0:
     rem_btn.pack(expand=True)
     endbtn = tk.Button(mainwindow,text='終了',font=('courier',20),command=end,width=20,height=2)
     endbtn.pack(expand=True)
-    rightslab = tk.Label(text='© 2024 Uwajima East Brass Band')
+    rightslab = tk.Label(text='© 2024 Hiroshima City University Brass Band   ver.2.0')
     rightslab.pack(side='bottom')
     mainwindow.mainloop()
