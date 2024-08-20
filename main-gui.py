@@ -3,7 +3,7 @@ import csv
 import tkinter as tk
 import pandas as pd
 
-file_path = 'data/libdata.csv'  # CSVファイルのパスを指定
+file_path = 'libdata.csv'  # CSVファイルのパスを指定
 width = 800 #横解像度の選択
 height = 800 #縦解像度の選択
 
@@ -462,7 +462,7 @@ while endcount == 0:
         mainwindow.destroy()
         global addendcount
         addendcount = 0
-        while endcount == 0:
+        while addendcount == 0:
             def addpro():
                 #変数呼び出しとaddwindowからの値の取得
                 global addtitleent
@@ -692,7 +692,7 @@ while endcount == 0:
     
     #メインウィンドウ生成
     mainwindow = tk.Tk()
-    iconfile = 'data/feelic.ico'
+    iconfile = 'feelic.ico'
     mainwindow.iconbitmap(default=iconfile)
     mainwindow.title('Feelic')
     mainwindow.geometry(f"{500}x{500}")
