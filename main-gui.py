@@ -475,6 +475,7 @@ while endcount == 0:
                 option = addoptionent.get()
                 addwindow.destroy()
                 instlist = []
+                #チェックボックスから取得した値をリストに格納
                 if selectfl.get() == 1:
                     instlist.append('fl')
                 if selectcl.get() == 1:
